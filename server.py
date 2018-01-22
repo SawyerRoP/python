@@ -3,7 +3,7 @@ import time
 
 
 def Main():
-                host = "54.200.116.65"
+                host = "54.200.235.169"
                 port = 5001
                 
                 mySocket = socket.socket()
