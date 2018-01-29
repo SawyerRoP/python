@@ -1,0 +1,44 @@
+#!usr/bin/python
+#-*- coding: utf-8 -*-
+import socket;
+import browser_cookie3;
+import requests;
+import codecs;
+
+url = 'http://119.160.218.5/hlpdsk/menu.php';
+values = {'userper':'userlhs','password':'lhs2541'};
+urlPercall = 'http://119.160.218.5/hlpdsk/helpdesk/report_by_supplier2.php'
+Header = {
+    'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    'Accept-Encoding':'gzip, deflate',
+    'Accept-Language':'en-US,en;q=0.9,th-TH;q=0.8,th;q=0.7',
+    'Cache-Control':'max-age=0',
+    'Connection':'keep-alive',
+    'Content-Length':'85',
+    'Content-Type':'application/x-www-form-urlencoded',
+    'Host':'119.160.218.5',
+    'Origin':'http://119.160.218.5',
+    'Referer':'http://119.160.218.5/hlpdsk/helpdesk/report_by_supplier2.php',
+    'Upgrade-Insecure-Requests':'1',
+    'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'
+}
+
+DataErevenue = {
+    'id_project':'ALL',
+    'type_service':'ALL',
+    'date_start':'01-08-2017',
+    'date_end':'01-08-2017',
+    'Submit':'Find'
+}
+
+cj = browser_cookie3.chrome() ;
+r = requests.post(url,data = values,cookies=cj);
+s = r.text;
+e = r.encoding;
+con = requests.post(urlPercall,data = DataErevenue,headers = Header );
+result = con.text;
+
+fileObj = codecs.open("test.txt", "w",encoding ='ISO-8859-1')
+fileObj.write(result);
+fileObj.closed
+#print(r.content);
