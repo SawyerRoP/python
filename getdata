@@ -4,6 +4,7 @@ import socket;
 import browser_cookie3;
 import requests;
 import codecs;
+import re;
 
 url = 'http://119.160.218.5/hlpdsk/menu.php';
 values = {'userper':'userlhs','password':'lhs2541'};
@@ -30,12 +31,23 @@ DataErevenue = {
     'date_end':'01-08-2017',
     'Submit':'Find'
 }
+data = requests.get(url);
 
-cj = browser_cookie3.chrome() ;
-r = requests.post(url,data = values,cookies=cj);
+#print(cj);
+r = requests.post(url,data = values);
 s = r.text;
 e = r.encoding;
-con = requests.post(urlPercall,data = DataErevenue,headers = Header );
+
+cj = browser_cookie3.chrome() ;
+ss = str(cj);
+match = ss.splite(',');
+#get_title = re.findall('PHPSESSID=(.*?)for 119.160.218.5',ss);
+print(match);
+f = codecs.open("cookie.txt", "w",encoding ='ISO-8859-1')
+f.write(match);
+f.closed
+
+con = requests.post(urlPercall,data = DataErevenue,headers = Header,cookies = cj );
 result = con.text;
 
 fileObj = codecs.open("test.txt", "w",encoding ='ISO-8859-1')
