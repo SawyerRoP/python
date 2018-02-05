@@ -7,7 +7,7 @@ import codecs;
 import re;
 
 url = 'http://119.160.218.5/hlpdsk/menu.php';
-values = {'userper':'userlhs','password':'lhs2541'};
+values = {'userper':'','password':''};
 urlPercall = 'http://119.160.218.5/hlpdsk/helpdesk/report_by_supplier2.php'
 Header = {
     'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
